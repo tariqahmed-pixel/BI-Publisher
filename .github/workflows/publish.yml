@@ -1,0 +1,45 @@
+name: Publish Power BI Reports
+
+on:
+  schedule:
+    # Example: Run "Sales Report" at 10:00 AM UTC
+    # You can add multiple cron schedules here, but they will all trigger this workflow.
+    # To run specific reports at specific times, use separate workflow files.
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+    inputs:
+      report_name:
+        description: 'Name of the report to publish (leave empty for all)'
+        required: false
+        default: ''
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
+
+      - name: Create .env file
+        run: |
+          echo "SLACK_TOKEN=${{ secrets.SLACK_TOKEN }}" > .env
+          echo "REPORT_URL=${{ secrets.REPORT_URL }}" >> .env
+
+      - name: Restore Auth State
+        run: |
+          echo '${{ secrets.AUTH_STATE_JSON }}' > auth-state.json
+
+      - name: Run Publisher
+        run: node publish.js "${{ github.event.inputs.report_name }}"

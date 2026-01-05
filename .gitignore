@@ -1,0 +1,5 @@
+node_modules/
+.env
+auth-state.json
+*.png
+.DS_Store
