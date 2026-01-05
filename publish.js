@@ -26,6 +26,8 @@ async function processReport(browser, reportConfig) {
     console.log(`Navigating to ${name}...`);
     try {
         await page.goto(cleanUrl, { waitUntil: 'load', timeout: 90000 });
+        console.log('Page loaded. Waiting 10s for background redirects/refreshes to settle...');
+        await page.waitForTimeout(10000);
     } catch (e) {
         console.error(`Failed to navigate to ${name}:`, e.message);
     }
