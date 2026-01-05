@@ -4,8 +4,8 @@ on:
   schedule:
     # Example: Run "Sales Report" at 10:00 AM UTC
     # You can add multiple cron schedules here, but they will all trigger this workflow.
-    # To run specific reports at specific times, use separate workflow files.
-    - cron: '0 10 * * *'
+    # UAE 10:23 AM is 06:23 AM UTC (UTC+4)
+    - cron: '23 6 * * *'
   workflow_dispatch:
     inputs:
       report_name:
