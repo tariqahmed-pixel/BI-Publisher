@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Install Playwright Browsers
-        run: npx playwright install chromium
+        run: npx playwright install --with-deps chromium
 
       - name: Create .env file
         run: |
