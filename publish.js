@@ -73,11 +73,10 @@ async function processReport(browser, reportConfig) {
         return Math.max(maxHeight, bodyHeight, 1200);
     });
 
-    // Since detection was under-reporting (2400 instead of the expected length), 
-    // Let's use a very safe baseline if the automated detection feels too small.
-    const safetyHeight = Math.max(dynamicHeight, 5200);
+    // Use the height from reports.json if provided, otherwise fallback to dynamic or 5200 safety height.
+    const safetyHeight = reportConfig.height || Math.max(dynamicHeight, 5200);
 
-    console.log(`Detected height: ${dynamicHeight}px. Using Safety Height: ${safetyHeight}px. Adjusting viewport...`);
+    console.log(`Detected height: ${dynamicHeight}px. Final Capture Height: ${safetyHeight}px. Adjusting viewport...`);
     await page.setViewportSize({ width: 1920, height: safetyHeight + 200 });
 
     console.log('Scrolling to force render visuals...');
