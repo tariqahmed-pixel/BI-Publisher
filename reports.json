@@ -3,5 +3,10 @@
         "name": "Sales Report",
         "url": "https://app.powerbi.com/groups/62fe2d44-b46a-4e52-b0b4-52889c43f025/reports/ce14683c-0d4f-496a-89da-7f1b61606874/964b686fcb1cf41542b6?experience=power-bi",
         "channel": "C078ST7JH7C"
+    },
+    {
+        "name": "Booking Report",
+        "url": "https://app.powerbi.com/groups/62fe2d44-b46a-4e52-b0b4-52889c43f025/reports/c9e763c7-8522-4192-9d83-df85451e64f2/f7e31d897e709002a886?experience=power-bi",
+        "channel": "C078ST7JH7C"
     }
 ]
