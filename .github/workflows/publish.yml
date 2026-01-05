@@ -39,7 +39,9 @@ jobs:
 
       - name: Restore Auth State
         run: |
-          echo '${{ secrets.AUTH_STATE_JSON }}' > auth-state.json
+          echo "$AUTH_STATE_JSON" > auth-state.json
+        env:
+          AUTH_STATE_JSON: ${{ secrets.AUTH_STATE_JSON }}
 
       - name: Run Publisher
         run: node publish.js "${{ github.event.inputs.report_name }}"
